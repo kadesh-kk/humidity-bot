@@ -56,26 +56,12 @@ def handle_message(event):
 
         predict_humidity = humidity_calc(city_name, int(temperature), float(humidity_rate))
         if predict_humidity >= 100:
-            send_message = """
-            結露ができそうだよ
-            """
+            send_message = "結露ができそうだよ"
         else:
-            send_message = """
-            湿度は{0}%になりそうだよ
-            """.format(predict_humidity)
+            send_message = "湿度は{0}%になりそうだよ".format(predict_humidity)
 
     except:
-        send_message = """
-        市町村名
-        温度
-        湿度
-        で送信してください。
-        
-        ---例---
-        新宿区
-        25℃
-        70％
-        """
+        send_message = "市町村名\n温度\n湿度\nで送信してください。\n\n---例---\n新宿区\n25℃\n70％\n"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=send_message))
