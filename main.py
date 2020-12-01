@@ -1,5 +1,6 @@
 from flask import Flask, request, abort
 from humidity.humidity import humidity_calc
+import datetime
 import os
 
 from linebot import (
@@ -23,7 +24,8 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 @app.route("/")
 def hello_world():
-    return "hello world!"
+    dt_now = datetime.datetime.now()
+    return "hello world!\n今は{0}年{1}月{2}日 {}時".format(dt_now.year, dt_now.month, dt_now.day, dt_now.hour)
 
 @app.route("/callback", methods=['POST'])
 def callback():
