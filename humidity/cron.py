@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup #ダウンロードしてなかったらpipでできるからやってね。
+from bs4 import BeautifulSoup
 import csv
 import pickle
 import json
@@ -74,7 +74,7 @@ def forecast_extract(soup, pref_name):
 
 def cron_main():
     # URLを取り出す
-    url_dict = pickle_load("./pkl/forecast_url.pickle")
+    url_dict = pickle_load("./humidity/pkl/forecast_url.pickle")
 
     # スクレイピングの処理
     forecast_data_dict = {}
@@ -87,8 +87,9 @@ def cron_main():
     # print(forecast_data_dict)
 
     # JSONデータで保存する
-    with open("./pkl/forecast_data.json", "w") as f:
+    with open("./humidity/pkl/forecast_data.json", "w") as f:
         json.dump(forecast_data_dict, f, indent=4)
 
 # スクレイピングを実行
-cron_main()
+if __name__ == '__main__':
+    cron_main()
