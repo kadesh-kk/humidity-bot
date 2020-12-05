@@ -1,0 +1,118 @@
+{
+    "\u6771\u4eac\u90fd": {
+        "\u6771\u4eac\u5730\u65b9": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u6771\u4eac\u90fd",
+            "country_name": "\u6771\u4eac\u5730\u65b9",
+            "min_temperature": 6,
+            "max_temperature": 13
+        },
+        "\u4f0a\u8c46\u8af8\u5cf6\u5317\u90e8": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u6771\u4eac\u90fd",
+            "country_name": "\u4f0a\u8c46\u8af8\u5cf6\u5317\u90e8",
+            "min_temperature": 9,
+            "max_temperature": 16
+        },
+        "\u4f0a\u8c46\u8af8\u5cf6\u5357\u90e8": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u6771\u4eac\u90fd",
+            "country_name": "\u4f0a\u8c46\u8af8\u5cf6\u5357\u90e8",
+            "min_temperature": 14,
+            "max_temperature": 19
+        },
+        "\u5c0f\u7b20\u539f\u8af8\u5cf6": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u6771\u4eac\u90fd",
+            "country_name": "\u5c0f\u7b20\u539f\u8af8\u5cf6",
+            "min_temperature": 21,
+            "max_temperature": 24
+        }
+    },
+    "\u57fc\u7389\u770c": {
+        "\u5357\u90e8": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u57fc\u7389\u770c",
+            "country_name": "\u5357\u90e8",
+            "min_temperature": 4,
+            "max_temperature": 12
+        },
+        "\u5317\u90e8": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u57fc\u7389\u770c",
+            "country_name": "\u5317\u90e8",
+            "min_temperature": 4,
+            "max_temperature": 12
+        },
+        "\u79e9\u7236\u5730\u65b9": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u57fc\u7389\u770c",
+            "country_name": "\u79e9\u7236\u5730\u65b9",
+            "min_temperature": 1,
+            "max_temperature": 12
+        }
+    },
+    "\u795e\u5948\u5ddd\u770c": {
+        "\u6771\u90e8": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u795e\u5948\u5ddd\u770c",
+            "country_name": "\u6771\u90e8",
+            "min_temperature": 7,
+            "max_temperature": 12
+        },
+        "\u897f\u90e8": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u795e\u5948\u5ddd\u770c",
+            "country_name": "\u897f\u90e8",
+            "min_temperature": 6,
+            "max_temperature": 12
+        }
+    },
+    "\u5343\u8449\u770c": {
+        "\u5317\u897f\u90e8": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u5343\u8449\u770c",
+            "country_name": "\u5317\u897f\u90e8",
+            "min_temperature": 6,
+            "max_temperature": 13
+        },
+        "\u5317\u6771\u90e8": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u5343\u8449\u770c",
+            "country_name": "\u5317\u6771\u90e8",
+            "min_temperature": 10,
+            "max_temperature": 14
+        },
+        "\u5357\u90e8": {
+            "year": 2020,
+            "month": 12,
+            "day": 5,
+            "pref_name": "\u5343\u8449\u770c",
+            "country_name": "\u5357\u90e8",
+            "min_temperature": 7,
+            "max_temperature": 15
+        }
+    }
+}
