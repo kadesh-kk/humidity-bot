@@ -94,7 +94,7 @@ def to_database(forecast_data_list):
     for i, d_l in enumerate(forecast_data_list):
         one_data = ", ".join([str(d) for d in d_l])
         # 最後のみ, をつけない
-        if i == len(forecast_data_list):
+        if i == len(forecast_data_list) - 1:
             query_data += "({0})".format(one_data)
         else:
             query_data += "({0}), ".format(one_data)
