@@ -2,7 +2,7 @@ from flask import Flask, request, abort, render_template
 from humidity.humidity import humidity_calc
 import datetime
 import os
-import pickle
+# import pickle
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -45,7 +45,7 @@ def hello_world():
     predict_humidity = humidity_calc(pref_name, city_name, int(temperature), float(humidity_rate))
     # return "hello world!\n今は{0}年{1}月{2}日 {3}時です!".format(dt_now.year, dt_now.month, dt_now.day, dt_now.hour)
 
-    return "hello world!\n今は{0}年{1}月{2}日 {3}時です!\n{4}の東京都八王子市の湿度は{5}%だよ!".format(dt_now.year, dt_now.month, dt_now.day, morning_str, dt_now.hour, predict_humidity)
+    return "hello world!<br>今は{0}年{1}月{2}日 {3}時です!<br>{4}の東京都八王子市の湿度は{5}%だよ!".format(dt_now.year, dt_now.month, dt_now.day, dt_now.hour, morning_str, predict_humidity)
 
 # def get_json_data():
 #     # 市区町村のデータを取得
