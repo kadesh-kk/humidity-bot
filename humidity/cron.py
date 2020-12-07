@@ -89,10 +89,26 @@ def get_connection():
 
 def to_database(forecast_data_list):
     # 引数: data_list は2重の配列
+
+    # 1次元配列の結合
+    def list_join(d_l):
+        s = ""
+        for i, d in enumerate(d_l):
+            if type(d) == str:
+                s += "'{0}'".format(d)
+            else:
+                s += str(d)
+            # 最後の文字の場合、", "はつけない
+            if i != len(d_l) - 1:
+                s += ", "
+
+        return s
+
     # PostgreSQLとの接続
     query_data = ""
     for i, d_l in enumerate(forecast_data_list):
-        one_data = ", ".join([str(d) for d in d_l])
+        one_data = list_join(d_l)
+
         # 最後のみ, をつけない
         if i == len(forecast_data_list) - 1:
             query_data += "({0})".format(one_data)
@@ -101,7 +117,7 @@ def to_database(forecast_data_list):
 
     # 最後の1文字目
     query = """
-    INSERT INTO forecast_db (
+    INSERT INTO forecast_tb (
         id, 
         year, 
         month, 
