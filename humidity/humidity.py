@@ -36,7 +36,7 @@ def from_database(pref_name, country_name):
     query = """
         SELECT min_temperature
         FROM forecast_tb
-        WHERE prefname = '{0}'
+        WHERE pref_name = '{0}'
         AND country_name = '{1}'
         AND year = {2}
         AND month = {3}
