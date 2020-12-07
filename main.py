@@ -27,12 +27,14 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 def hello_world():
     dt_now = datetime.datetime.now() + datetime.timedelta(days = 1)
 
-    pref_name = "東京都"
-    city_name = "八王子市"
-    temperature = 13
-    humidity_rate = 25
-    predict_humidity = humidity_calc(pref_name, city_name, int(temperature), float(humidity_rate))
-    return "hello world!\n今は{0}年{1}月{2}日 {3}時です!\n東京都八王子市の湿度は{4}%だよ!".format(dt_now.year, dt_now.month, dt_now.day, dt_now.hour, predict_humidity)
+    # pref_name = "東京都"
+    # city_name = "八王子市"
+    # temperature = 13
+    # humidity_rate = 25
+    # predict_humidity = humidity_calc(pref_name, city_name, int(temperature), float(humidity_rate))
+    return "hello world!\n今は{0}年{1}月{2}日 {3}時です!".format(dt_now.year, dt_now.month, dt_now.day, dt_now.hour)
+
+    # return "hello world!\n今は{0}年{1}月{2}日 {3}時です!\n東京都八王子市の湿度は{4}%だよ!".format(dt_now.year, dt_now.month, dt_now.day, dt_now.hour, predict_humidity)
 
 def get_json_data():
     # 市区町村のデータを取得
