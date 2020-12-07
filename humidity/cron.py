@@ -119,7 +119,6 @@ def to_database(forecast_data_list):
     # 最後の1文字目
     query = """
     INSERT INTO forecast_tb (
-        id, 
         year, 
         month, 
         date, 
