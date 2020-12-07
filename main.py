@@ -46,7 +46,7 @@ def top_page():
 
     # return render_template("index.html")
 
-@app.route("/callback", methods=['POST'])
+@app.route("/callback", methods='POST')
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
