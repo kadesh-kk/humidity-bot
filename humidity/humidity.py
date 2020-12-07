@@ -1,9 +1,8 @@
-# import requests
-# from bs4 import BeautifulSoup
 import json
 import os
 import psycopg2
 import datetime
+import pickle
 
 
 # city_dict = {
@@ -27,7 +26,7 @@ def get_connection():
     dsn = os.environ.get('DATABASE_URL')
     return psycopg2.connect(dsn)
 
-def from_database(pref_name, city_name):
+def from_database(pref_name, country_name):
     # 1日後のデータを取得
     dt_now = datetime.datetime.now()
     # 20時にスクレイピングを行うため(時差9時間を考慮)
@@ -42,7 +41,7 @@ def from_database(pref_name, city_name):
         AND year = {2}
         AND month = {3}
         AND date = {4}
-        """.format(pref_name, city_name, dt_now.year, dt_now.month, dt_now.day)
+        """.format(pref_name, country_name, dt_now.year, dt_now.month, dt_now.day)
 
     with get_connection() as conn:
         # クエリを編集する
@@ -60,42 +59,19 @@ def max_humidity_calc(temperature):
     return round(a, 2) # 小数点2桁まで表示
 
 def humidity_calc(pref_name, city_name, temperature, humidity_rate):
-    # JSONデータの読み込み
-    with open("./pkl/forecast_data.json") as f:
-        forecast_data_dict = json.load(f)
+    # # JSONデータの読み込み
+    # with open("./humidity/pkl/forecast_data.json") as f:
+    #     forecast_data_dict = json.load(f)
 
-    # # スクレイピングの処理
-    # base_url = "https://www.jma.go.jp/jp/yoho/319.html"
-    # r = requests.get(base_url)
-    # r.encoding = r.apparent_encoding
-    #
-    # soup = BeautifulSoup(r.text)
-    #
-    # name_list = soup.find_all("div", style="float: left")
-    # min_temp_list = soup.find_all("td", class_="min")
-    # max_temp_list = soup.find_all("td", class_="max")
-    #
-    # # 最低気温、最高気温は奇数の時のみ処理をする
-    # min_temp_list = [m for i, m in enumerate(min_temp_list) if i % 2 == 1]
-    # max_temp_list = [m for i, m in enumerate(max_temp_list) if i % 2 == 1]
-    #
-    # #
-    # data_dict = {}
-    # for name, min_temp, max_temp in zip(name_list, min_temp_list, max_temp_list):
-    #     name = name.string
-    #     min_temp = min_temp.string.replace("度", "")
-    #     max_temp = max_temp.string.replace("度", "")
-    #
-    #     data = ForecastData(name, int(min_temp), int(max_temp))
-    #     # data.view()
-    #
-    #     data_dict[name] = data
-    #
-    # city_class = city_dict[city_name]
-    # fc = data_dict[city_class] # ForecastData のデータ
+    # pickleから自治体の区分を取り出す
+    with open("./humidity/pkl/country.pickle", mode='rb') as f:
+        pref_city_dict = pickle.load(f)
+
+    country_name = pref_city_dict[pref_name][city_name]
+
     # min_temperature = forecast_data_dict[pref_name][city_name]["min_temperature"]
 
-    min_temperature = from_database(pref_name, city_name)
+    min_temperature = from_database(pref_name, country_name)
 
     # 現在の水蒸気量の計算
     now__humidity = max_humidity_calc(temperature) * humidity_rate
