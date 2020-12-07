@@ -71,7 +71,7 @@ def forecast_extract(soup, pref_name):
 
     f_data_list = []
     for country_name, min_temp, max_temp in zip(country_name_list, min_temp_list, max_temp_list):
-        country_name = country_name.string
+        country_name = str(country_name.string) # 型判定するためにstrに変換
         min_temp = min_temp.string.replace("度", "")
         max_temp = max_temp.string.replace("度", "")
 
@@ -94,6 +94,7 @@ def to_database(forecast_data_list):
     def list_join(d_l):
         s = ""
         for i, d in enumerate(d_l):
+            print(str(d) + ":" + str(type(d)))
             if type(d) == str:
                 s += "'{0}'".format(d)
             else:
@@ -126,6 +127,7 @@ def to_database(forecast_data_list):
         country_name, 
         min_temperature, 
         max_temperature) VALUES {0};""".format(query_data)
+    print(query)
 
     with get_connection() as conn:
         # クエリを編集する
