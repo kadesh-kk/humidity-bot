@@ -36,17 +36,17 @@ def hello_world():
 
     # return "hello world!\n今は{0}年{1}月{2}日 {3}時です!\n東京都八王子市の湿度は{4}%だよ!".format(dt_now.year, dt_now.month, dt_now.day, dt_now.hour, predict_humidity)
 
-def get_json_data():
-    # 市区町村のデータを取得
-    with open("./pkl/forecast_url.pickle", mode='rb') as f:
-        pref_city_dict = pickle.load(f)
-    return pref_city_dict
-
-def top_page():
-    pref_city_dict = get_json_data()
-    # modelを書く
-
-    # return render_template("index.html")
+# def get_json_data():
+#     # 市区町村のデータを取得
+#     with open("./pkl/forecast_url.pickle", mode='rb') as f:
+#         pref_city_dict = pickle.load(f)
+#     return pref_city_dict
+#
+# def top_page():
+#     pref_city_dict = get_json_data()
+#     # modelを書く
+#
+#     # return render_template("index.html")
 
 @app.route("/callback", methods='POST')
 def callback():
