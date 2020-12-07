@@ -5,6 +5,8 @@ import pickle
 import json
 import time
 import datetime
+import psycopg2
+import os
 
 # pickle 関連の処理
 def pickle_dump(pkl_obj, path):
@@ -34,6 +36,11 @@ class ForecastData():
                                                                                       self.max_temperature,
                                                                                       self.min_temperature))
 
+    def data_to_list(self):
+        fc_data_dict = vars(self)
+        fc_data_list = [v for k, v in fc_data_dict.items()]
+        return fc_data_list
+
 # スクレイピングの処理
 def scraping(base_url):
     time.sleep(1)
@@ -43,6 +50,9 @@ def scraping(base_url):
 
 # データ作成の処理
 def forecast_extract(soup, pref_name):
+    # 引数：  beautifulsoupのsoup, 県名
+    # 戻り値：リスト
+
     # 現在時刻の算出
     dt_now = datetime.datetime.now() + datetime.timedelta(days=1)
     year = dt_now.year
@@ -59,7 +69,7 @@ def forecast_extract(soup, pref_name):
     min_temp_list = [m for i, m in enumerate(min_temp_list) if i % 2 == 1]
     max_temp_list = [m for i, m in enumerate(max_temp_list) if i % 2 == 1]
 
-    f_data_dict = {}
+    f_data_list = []
     for country_name, min_temp, max_temp in zip(country_name_list, min_temp_list, max_temp_list):
         country_name = country_name.string
         min_temp = min_temp.string.replace("度", "")
@@ -68,27 +78,58 @@ def forecast_extract(soup, pref_name):
         f_data = ForecastData(year, month, day, pref_name, country_name, int(min_temp), int(max_temp))
         #         data.view()
 
-        f_data_dict[country_name] = vars(f_data)
+        f_data_list.append(f_data.data_to_list())
+        # f_data_dict[country_name] = vars(f_data)
 
-    return {pref_name: f_data_dict}
+    return f_data_list
+
+def get_connection():
+    dsn = os.environ.get('DATABASE_URL')
+    return psycopg2.connect(dsn)
+
+def to_database(forecast_data_list):
+    # 引数: data_list は2重の配列
+    # PostgreSQLとの接続
+    query_data = ""
+    for d_l in forecast_data_list:
+        one_data = ", ".join([str(d) for d in d_l])
+        query_data += "({0}), ".format(one_data)
+    query = """
+    INSERT INTO forecast_db (
+        id, 
+        year, 
+        month, 
+        date, 
+        pref_name, 
+        country_name, 
+        min_temperature, 
+        max_temperature) VALUES {0});""".format(query_data)
+
+    with get_connection() as conn:
+        # クエリを編集する
+        with conn.cursor() as cur:
+            cur.execute(query)
+        conn.commit()  # コミット
 
 def cron_main():
     # URLを取り出す
     url_dict = pickle_load("./humidity/pkl/forecast_url.pickle")
 
     # スクレイピングの処理
-    forecast_data_dict = {}
+    forecast_data_list = []
     for pref_name, url in url_dict.items():
         soup = scraping(url)
-        data_dict = forecast_extract(soup, pref_name)
+        data_list = forecast_extract(soup, pref_name)
 
-        forecast_data_dict.update(data_dict)
+        forecast_data_list += data_list
+    # print(forecast_data_list)
 
-    # print(forecast_data_dict)
+    # この下にDBの処理を行う
+    to_database(forecast_data_list)
 
     # JSONデータで保存する
-    with open("./humidity/pkl/forecast_data.json", "w") as f:
-        json.dump(forecast_data_dict, f, indent=4)
+    # with open("./humidity/pkl/forecast_data.json", "w") as f:
+    #     json.dump(forecast_data_dict, f, indent=4)
 
 # スクレイピングを実行
 if __name__ == '__main__':
