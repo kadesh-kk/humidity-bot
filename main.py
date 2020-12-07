@@ -23,7 +23,8 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-@app.route("/", methods = "GET")
+# @app.route("/", methods = ["GET"])
+@app.route("/")
 def hello_world():
     dt_now = datetime.datetime.now() + datetime.timedelta(days = 1)
 
@@ -48,7 +49,7 @@ def hello_world():
 #
 #     # return render_template("index.html")
 
-@app.route("/callback", methods='POST')
+@app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
