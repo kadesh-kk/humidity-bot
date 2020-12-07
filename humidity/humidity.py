@@ -28,8 +28,11 @@ def get_connection():
     return psycopg2.connect(dsn)
 
 def from_database(pref_name, city_name):
-    # 1日後のデータを取得(時差9時間を考慮)
-    dt_now = datetime.datetime.now() + datetime.timedelta(days = 1, hours = 9)
+    # 1日後のデータを取得
+    dt_now = datetime.datetime.now()
+    # 20時にスクレイピングを行うため(時差9時間を考慮)
+    if dt_now.hour >= 11:
+        dt_now = dt_now + datetime.timedelta(days=1)
 
     query = """
         SELECT min_temperature
