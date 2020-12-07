@@ -100,7 +100,6 @@ def to_database(forecast_data_list):
             query_data += "({0}), ".format(one_data)
 
     # 最後の1文字目
-    query_data = query_data[0:-1]
     query = """
     INSERT INTO forecast_db (
         id, 
