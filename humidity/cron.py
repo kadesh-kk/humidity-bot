@@ -91,9 +91,16 @@ def to_database(forecast_data_list):
     # 引数: data_list は2重の配列
     # PostgreSQLとの接続
     query_data = ""
-    for d_l in forecast_data_list:
+    for i, d_l in enumerate(forecast_data_list):
         one_data = ", ".join([str(d) for d in d_l])
-        query_data += "({0}), ".format(one_data)
+        # 最後のみ, をつけない
+        if i == len(forecast_data_list):
+            query_data += "({0})".format(one_data)
+        else:
+            query_data += "({0}), ".format(one_data)
+
+    # 最後の1文字目
+    query_data = query_data[0:-1]
     query = """
     INSERT INTO forecast_db (
         id, 
@@ -103,7 +110,7 @@ def to_database(forecast_data_list):
         pref_name, 
         country_name, 
         min_temperature, 
-        max_temperature) VALUES {0});""".format(query_data)
+        max_temperature) VALUES {0};""".format(query_data)
 
     with get_connection() as conn:
         # クエリを編集する
