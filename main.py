@@ -14,7 +14,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
 #環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
