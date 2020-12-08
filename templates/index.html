@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>トップページ</title>
+    <script type=text/javascript src="{{ url_for('static', filename='country.js') }}"></script>
+    <style>
+        body {
+            font-family: 'Consolas', 'Noto Sans JP', '游ゴシック', 'Hiragino Sans','Helvetica Neue', 'メイリオ', 'sans-serif';
+        }
+
+        p {
+            font-size: 18px;
+            color: rgb(105,105,105);
+        }
+
+        input {
+            height: 36px;
+        }
+
+        #prefectures {
+            width: 100px;
+            height: 32px;
+        }
+
+        #city {
+            width: 150px;
+            height: 32px;
+        }
+    </style>
+</head>
+<body>
+    <h2>都道府県と市区町村を選択してね！</h2>
+
+    <div>
+        <form>
+            <p><b>都道府県</b></p>
+            <!--onchangeはクリック時-->
+                <select id="prefectures" name="prefectures" onchange="change()">
+                </select>
+            <p><b>市区町村</b></p>
+                <select id="city" name="city">
+                </select>
+            <p>
+                <input type="submit" value="送信する">
+            </p>
+        </form>
+    </div>
+
+</body>
+</html>
