@@ -23,7 +23,7 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-@app.route("/index", methods = ["GET", "POST"])
+@app.route("/", methods = ["GET", "POST"])
 def top_page():
     if request.method == "GET":
         return render_template("index.html")
