@@ -26,23 +26,29 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 @app.route("/", methods = ["GET", "POST"])
 def top_page():
     if request.method == "GET":
-        return render_template("index.html")
+        return render_template("templates/index.html")
     else:
         # 湿度の計算
         pref_name = request.form["prefectures"]
         city_name = request.form["city"]
         temperature = 13
         humidity_rate = 25
-        predict_humidity = humidity_calc(pref_name, city_name, int(temperature), float(humidity_rate))
+        try:
+            predict_humidity = humidity_calc(pref_name, city_name, int(temperature), float(humidity_rate))
+        except:
+            predict_humidity = -1
 
         # 湿度が100%以上となっている場合
         if predict_humidity > 100:
             predict_humidity = 100
 
-        return render_template("humidity.html",
-                               pref_name = pref_name,
-                               city_name = city_name,
-                               predict_humidity =predict_humidity)
+        if predict_humidity == -1:
+            return '値を取得することができませんでした<br><a href="https://humidity-bot.herokuapp.com/">前のページに戻る</a>'
+        else:
+            return render_template("humidity.html",
+                                   pref_name = pref_name,
+                                   city_name = city_name,
+                                   predict_humidity =predict_humidity)
 
 # @app.route("/")
 # def hello_world():
@@ -108,4 +114,4 @@ def handle_message(event):
 if __name__ == "__main__":
 #    app.run()
     port = int(os.getenv("PORT"))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=False)
