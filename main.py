@@ -2,7 +2,6 @@ from flask import Flask, request, abort, render_template
 from humidity.humidity import humidity_calc
 import datetime
 import os
-# import pickle
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -26,7 +25,7 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 @app.route("/", methods = ["GET", "POST"])
 def top_page():
     if request.method == "GET":
-        return render_template("templates/index.html")
+        return render_template("index.html")
     else:
         # 湿度の計算
         pref_name = request.form["prefectures"]
