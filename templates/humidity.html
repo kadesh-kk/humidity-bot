@@ -2,16 +2,15 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+
     <title>{{ pref_name }} {{ city_name }}の結露情報</title>
-    <style>
-        body {
-            font-family: 'Consolas', 'Noto Sans JP', '游ゴシック', 'Hiragino Sans','Helvetica Neue', 'メイリオ', 'sans-serif';
-        }
-    </style>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}"/>
 </head>
 <body>
-    <h2>{{ pref_name }} {{ city_name }}の湿度</h2>
-    <h1>湿度は {{ predict_humidity }}%だよ</h1>
-    <p><a href="https://humidity-bot.herokuapp.com/">元のページに戻る</a></p>
+    <div>
+        <h2>{{ pref_name }} {{ city_name }}の湿度</h2>
+        <h1>湿度は {{ predict_humidity }}%だよ</h1>
+        <p><a href="https://humidity-bot.herokuapp.com/">元のページに戻る</a></p>
+    </div>Q
 </body>
 </html>
