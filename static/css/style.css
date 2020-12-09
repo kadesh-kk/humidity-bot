@@ -19,7 +19,6 @@ input {
 
 
 p {
-    font-size: 40px;
     color: rgb(105,105,105);
 }
 
@@ -29,19 +28,29 @@ div {
 }
 
 #prefectures {
-    width: 100px;
+    font-size: 1em;
+    text-align: center;
+    width: 6em;
+    height: 1.5em;
 }
 
 #city {
-    width: 1.5em;
+    font-size: 1em;
+    text-align: center;
+    width: 12em;
+    height: 1.5em;
 }
 
 .integer_type {
     text-align: right;
-    width: 1.2em;
+    width: 2em;
+    height: 2.5em;
 }
 
 .submit_type {
+    font-size: 1em;
+    height: 1.5em;
+    width: 4em;
     border: 1px;
     border-radius: 4px;
     box-sizing: border-box;
