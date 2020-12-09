@@ -8,7 +8,6 @@ select {
     font-size: 1em;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-sizing: border-box;
 }
 
 input {
@@ -16,7 +15,6 @@ input {
     font-size: 28px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-sizing: border-box;
 }
 
 
@@ -46,14 +44,11 @@ div {
 .integer_type {
     text-align: right;
     width: 2em;
-    height: 2.5em;
+    height: 1.5em;
 }
 
 .submit_type {
     font-size: 1em;
     height: 1.5em;
     width: 4em;
-    border: 1px;
-    border-radius: 4px;
-    box-sizing: border-box;
 }
