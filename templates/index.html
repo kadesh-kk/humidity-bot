@@ -34,6 +34,12 @@
 
         .integer_type {
             text-align: right;
+            width: 80px;
+            font-size: 28px;
+        }
+
+        .b_integer {
+            font-size: 28px;
         }
     </style>
 </head>
@@ -48,11 +54,12 @@
             <p><b>市区町村</b></p>
                 <select id="city" name="city">
                 </select>
+            <br/>
             <h2>部屋の温度と湿度を入力してね！</h2>
-            <p><b>部屋の温度</b>></p>
-                <input name="temperature" class="integer_type" type="tel" pattern="^-?(0|[1-9][0-9]*)" placeholder="18" required>℃
-            <p><b>部屋の湿度</b>></p>
-                <input name="humidity" class="integer_type" type="tel" pattern="\d{1,2}" placeholder="40" required>%
+            <p><b>部屋の温度</b></p>
+            <input name="temperature" class="integer_type" type="tel" pattern="^-?(0|[1-9][0-9]*)" placeholder="18" required><b class="b_integer>℃</b>
+            <p><b>部屋の湿度</b></p>
+                <input name="humidity" class="integer_type" type="tel" pattern="\d{1,2}" placeholder="40" required><b class="b_integer">%</b>
             <p>
                 <input type="submit" value="submit">
             </p>
