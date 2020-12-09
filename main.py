@@ -30,8 +30,8 @@ def top_page():
         # 湿度の計算
         pref_name = request.form["prefectures"]
         city_name = request.form["city"]
-        temperature = 13
-        humidity_rate = 25
+        temperature = request.form["temperature"]
+        humidity_rate = request.form["humidity"]
         try:
             predict_humidity = humidity_calc(pref_name, city_name, int(temperature), float(humidity_rate))
         except:
