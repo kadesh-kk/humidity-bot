@@ -1,16 +1,26 @@
 body {
     font-family: 'Consolas', 'Noto Sans JP', '游ゴシック', 'Hiragino Sans','Helvetica Neue', 'メイリオ', 'sans-serif';
-    font-size: 2.5em;
+    font-size: 1.5em;
 }
+
+select {
+    border: 1px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input {
+    border: 1px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
 
 p {
     font-size: 40px;
     color: rgb(105,105,105);
 }
 
-input {
-    height: 36px;
-}
 
 div {
     text-align:center;
@@ -18,20 +28,19 @@ div {
 
 #prefectures {
     width: 100px;
-    height: 32px;
 }
 
 #city {
     width: 150px;
-    height: 32px;
 }
 
 .integer_type {
     text-align: right;
     width: 80px;
-    font-size: 28px;
 }
 
-.b_integer {
-    font-size: 28px;
+.submit_type {
+    border: 1px;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
