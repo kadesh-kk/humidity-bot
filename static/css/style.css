@@ -4,15 +4,17 @@ body {
 }
 
 select {
+    font-family: 'Consolas', 'Noto Sans JP', '游ゴシック', 'Hiragino Sans','Helvetica Neue', 'メイリオ', 'sans-serif';
     font-size: 1em;
-    border: 1px;
+    border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
 input {
-    font-size: 1em;
-    border: 1px;
+    font-family: 'Consolas', 'Noto Sans JP', '游ゴシック', 'Hiragino Sans','Helvetica Neue', 'メイリオ', 'sans-serif';
+    font-size: 28px;
+    border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
 }
